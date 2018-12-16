@@ -1,0 +1,58 @@
+<resources>
+        <string name="app_name">iNature</string>
+        <string name="bluetooth_not_available">Недоступен для получения данных</string>
+        <string name="bluetooth_available">Готов к получению данных</string>
+        <string name="bluetooth_search">Поиск устройства…</string>
+        <string name="bluetooth_search_desc">Выполнятеся поиск устройства в пределах зоны покрытия сети Bluetooth</string>
+        <string name="bluetooth_available_desc">Устройство найдено. Обновление данных будет выполняться автоматически</string>
+        <string name="bluetooth_enabled">Bluetooth выключен</string>
+        <string name="bluetooth_enabled_desc">Функция Bluetooth выключена на устройстве и показания обновлятся не будут</string>
+        <string name="bluetooth_request">Bluetooth выключен</string>
+        <string name="bluetooth_request_button">Включить</string>
+
+        <string name="connect_button">Подключиться</string>
+        <string name="save_button">Сохранить</string>
+        <string name="cancel_button">Отмена</string>
+        <string name="delete_button">Удалить</string>
+        <string name="ok_button">Ок</string>
+        <string name="scan_button">Сканировать</string>
+        <string name="add_button">Добавить</string>
+        <string name="next_button">Далее</string>
+        <string name="back_button">Назад</string>
+        <string name="finish_button">Закончить</string>
+
+        <string name="sensor_list_title">Список датчиков</string>
+        <string name="add_new_sensor_title">Настройка датчика</string>
+
+        <string name="add_new_sensor_dialog_hint">Название и mac-адрес указаны на торце коробки с датчиком</string>
+        <string name="add_new_sensor_dialog_title">Создание датчика</string>
+        <string name="add_new_sensor_dialog_hint_mac">Введите mac-адрес устройства</string>
+        <string name="add_new_sensor_dialog_hint_name">Введите название устройства</string>
+
+        <string name="qr_code_title">Просканируйте QR-код</string>
+        <string name="qr_code_description">Отсканировать QR-код</string>
+        <string name="qr_code_no_scan">Отсканировать QR-код</string>
+
+        <string name="sensor_edit_dialog_title">Редактировать датчик</string>
+        <string name="sensor_edit_dialog_hint">Введите название датчика</string>
+        <string name="sensor_edit_dialog_error">Название должно содержать как минимум одну букву или цифру</string>
+        <string name="sensor_mac_format">Неверный формат mac-адреса</string>
+
+        <string name="sensor_delete_dialog_title">Удалить интервал</string>
+        <string name="sensor_delete_dialog_text">Удалить временной интервал?</string>
+
+        <string name="delete_sensor_menu_item">Удалить датчик</string>
+        <string name="rename_sensor_menu_item">Редактировать</string>
+
+        <string name="preview_error_title">Датчик не найден</string>
+        <string name="preview_error_desc">Датчик с таким сочетанием названия и mac-адреса не найден в базе. Проверьте правильность введения данных</string>
+
+        <string name="instruction_title_1">Добро пожаловать</string>
+        <string name="instruction_desc_1">Перед Вами приложение, предназначенное для дистанционного получения показаний с устройств проекта iNature</string>
+
+        <string name="instruction_title_2">Объединяйте устройства</string>
+        <string name="instruction_desc_2">Объединяйте все устройства проекта iNature в одном приложении, для контроля за параметрами вашего дома</string>
+
+        <string name="instruction_title_3">Получайте показания</string>
+        <string name="instruction_desc_3">Получайте показания со всех вчёаших устройств дистанционно - через сетевой протокол Bluetooth</string>
+</resources>
