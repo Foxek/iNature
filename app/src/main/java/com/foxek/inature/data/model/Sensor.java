@@ -19,19 +19,19 @@ public class Sensor {
     @ColumnInfo(name = "sensor_mac")
     private String address;
 
-    @ColumnInfo(name = "sensor_device")
-    private String device;
-
     @ColumnInfo(name = "sensor_icon")
     private String icon;
 
-    public Sensor(int uid, String name, String type, String address, String device, String icon) {
+    public Sensor(int uid, String name, String type, String address, String icon) {
         this.uid = uid;
         this.name = name;
         this.type = type;
         this.address = address;
         this.icon = icon;
-        this.device = device;
+    }
+
+    public Sensor() {
+
     }
 
     public String getName() {
@@ -56,14 +56,6 @@ public class Sensor {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getDevice() {
-        return device;
-    }
-
-    public void setDevice(String device) {
-        this.device = device;
     }
 
     public String getIcon() {

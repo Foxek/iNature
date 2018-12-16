@@ -54,8 +54,8 @@ public class SensorActivity extends BaseView implements SensorMvpView, View.OnCl
     @Override
     public void startPreviewActivity(String name, String mac) {
         Intent intent = new Intent(this, PreviewActivity.class);
-        intent.putExtra("sensor_name", name);
-        intent.putExtra("sensor_mac", mac);
+        intent.putExtra("product_id", name);
+        intent.putExtra("mac_address", mac);
         startActivity(intent);
     }
 

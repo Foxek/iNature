@@ -6,6 +6,7 @@ import com.foxek.inature.di.NetworkHelper;
 import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.foxek.inature.common.Constants.DATABASE_URL;
@@ -18,6 +19,7 @@ public class NetworkModule {
     public NetworkModule(){
         mRetrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl(DATABASE_URL)
                 .build();
     }

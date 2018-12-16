@@ -7,4 +7,6 @@ public class Constants {
     public final static String DATABASE_URL =  "https://smartsensor-e29f6.firebaseio.com/";
     public final static String MAC_PATTERN = "([\\da-fA-F]{2}(?:\\:|-|$)){6}";
     public final static String DELIMITER = "!#!";
+
+    public static final String EXTRA_ARGS = "args";
 }

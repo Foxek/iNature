@@ -1,5 +1,7 @@
 package com.foxek.inature.di.module;
 
+import android.os.Bundle;
+
 import com.foxek.inature.di.PerActivity;
 import com.foxek.inature.ui.preview.PreviewInteractor;
 import com.foxek.inature.ui.preview.PreviewMvpPresenter;
@@ -14,6 +16,12 @@ import dagger.Provides;
 @Module
 public class ActivityModule {
 
+    private final Bundle args;
+
+    public ActivityModule(Bundle args) {
+        this.args = args;
+    }
+
     @Provides
     @PerActivity
     SensorMvpPresenter provideSensorPresenter(SensorInteractor interactor){
@@ -23,6 +31,6 @@ public class ActivityModule {
     @Provides
     @PerActivity
     PreviewMvpPresenter providePreviewPresenter(PreviewInteractor interactor){
-        return new PreviewPresenter(interactor);
+        return new PreviewPresenter(interactor,args);
     }
 }
