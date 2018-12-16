@@ -9,10 +9,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
+import com.foxek.inature.ui.preview.PreviewActivity;
 import com.google.zxing.Result;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
+import static com.foxek.inature.common.Constants.DELIMITER;
 import static com.foxek.inature.common.Constants.MY_CAMERA_REQUEST_CODE;
 
 public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler{
@@ -62,9 +64,23 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
+
     @Override
     public void handleResult(Result rawResult) {
+        String[] result;
+        Intent intent = new Intent(this, PreviewActivity.class);
 
+        if (rawResult.toString().contains(DELIMITER)) {
+            result = rawResult.toString().split(DELIMITER, 2);
+
+            intent.putExtra("sensor_name", result[0]);
+            intent.putExtra("sensor_mac", result[1]);
+        }else {
+            intent.putExtra("sensor_name", "null");
+            intent.putExtra("sensor_mac", "null");
+        }
+        startActivity(intent);
+        finish();
     }
 }
 
