@@ -1,11 +1,11 @@
-package com.foxek.inature.ui;
+package com.foxek.inature.ui.measure;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.foxek.inature.R;
+import com.foxek.inature.ui.base.BaseView;
 
-public class MeasureActivity extends AppCompatActivity {
+public class MeasureActivity extends BaseView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

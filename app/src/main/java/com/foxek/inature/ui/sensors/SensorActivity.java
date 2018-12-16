@@ -1,18 +1,15 @@
 package com.foxek.inature.ui.sensors;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.foxek.inature.R;
-import com.foxek.inature.ui.MeasureActivity;
 import com.foxek.inature.ui.base.BaseView;
+import com.foxek.inature.ui.measure.MeasureActivity;
 import com.foxek.inature.ui.preview.PreviewActivity;
-import com.foxek.inature.ui.preview.PreviewMvpInteractor;
 
 import javax.inject.Inject;
 
@@ -26,7 +23,7 @@ public class SensorActivity extends BaseView implements SensorMvpView, View.OnCl
     SensorMvpPresenter mPresenter;
 
     @BindView(R.id.sensors_list)
-    RecyclerView    mSensorList;
+    RecyclerView mSensorList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

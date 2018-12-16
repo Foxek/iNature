@@ -33,7 +33,6 @@ public class SensorPresenter extends BasePresenter<SensorMvpView,SensorMvpIntera
     private void createSensorListAdapter (){
         getView().setSensorList(mInteractor.createSensorListAdapter());
         registerItemCallback();
-
         mDisposable.add(mInteractor.scheduleListChanged());
     }
 

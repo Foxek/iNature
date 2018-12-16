@@ -77,6 +77,29 @@ public class CreateDialog extends BaseFragment implements View.OnClickListener {
         mBinder.unbind();
     }
 
+    private boolean validateMacAddress(String address){
+        if (address.isEmpty()) return false;
+        Pattern pattern = Pattern.compile(MAC_PATTERN);
+        Matcher matcher = pattern.matcher(address);
+        return matcher.find();
+    }
+
+    private void validateFiled(){
+        if (mNameEditText.getText().toString().isEmpty()){
+            mErrorHint.setVisibility(View.VISIBLE);
+            mErrorHint.setText(R.string.sensor_edit_dialog_error);
+        }else if (!validateMacAddress(mMacEditText.getText().toString())){
+            mErrorHint.setVisibility(View.VISIBLE);
+            mErrorHint.setText(R.string.sensor_mac_format);
+            mMacEditText.setText(null);
+        }else{
+            mNameEditText.setCursorVisible(false);
+            mMacEditText.setCursorVisible(false);
+            dismiss();
+            mPresenter.addButtonPressed(mNameEditText.getText().toString(),mMacEditText.getText().toString());
+        }
+    }
+
     @OnClick({R.id.scan_button,R.id.add_button})
     @Override
     public void onClick(View v) {
@@ -86,7 +109,7 @@ public class CreateDialog extends BaseFragment implements View.OnClickListener {
                 dismiss();
                 break;
             case R.id.add_button:
-
+                validateFiled();
                 break;
         }
     }
