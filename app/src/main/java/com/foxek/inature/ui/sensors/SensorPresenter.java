@@ -10,11 +10,9 @@ import io.reactivex.schedulers.Schedulers;
 public class SensorPresenter extends BasePresenter<SensorMvpView,SensorMvpInteractor> implements SensorMvpPresenter {
 
     private CompositeDisposable     mDisposable;
-    private SensorMvpInteractor     mInteractor;
 
     public SensorPresenter(SensorMvpInteractor interactor){
         super(interactor);
-        mInteractor = interactor;
         mDisposable = new CompositeDisposable();
     }
 
@@ -27,17 +25,16 @@ public class SensorPresenter extends BasePresenter<SensorMvpView,SensorMvpIntera
     public void detachView() {
         super.detachView();
         mDisposable.dispose();
-        mInteractor = null;
     }
 
     private void createSensorListAdapter (){
-        getView().setSensorList(mInteractor.createSensorListAdapter());
+        getView().setSensorList(getInteractor().createSensorListAdapter());
         registerItemCallback();
-        mDisposable.add(mInteractor.scheduleListChanged());
+        mDisposable.add(getInteractor().scheduleListChanged());
     }
 
     private void registerItemCallback() {
-        mDisposable.add(mInteractor.onSensorItemClick()
+        mDisposable.add(getInteractor().onSensorItemClick()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(sensor -> getView().startMeasureActivity(sensor.uid,sensor.getName(),sensor.getIcon()), throwable -> {}));

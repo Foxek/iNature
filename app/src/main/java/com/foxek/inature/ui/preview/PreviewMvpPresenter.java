@@ -1,4 +1,6 @@
 package com.foxek.inature.ui.preview;
 
-public interface PreviewMvpPresenter {
+import com.foxek.inature.ui.base.MvpPresenter;
+
+public interface PreviewMvpPresenter extends MvpPresenter<PreviewMvpView,PreviewMvpInteractor> {
 }
