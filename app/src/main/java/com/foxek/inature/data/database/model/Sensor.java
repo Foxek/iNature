@@ -2,9 +2,10 @@ package com.foxek.inature.data.database.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "sensor")
+@Entity(tableName = "sensor", indices = @Index(value = {"sensor_name"}, unique = true))
 public class Sensor {
 
     @PrimaryKey

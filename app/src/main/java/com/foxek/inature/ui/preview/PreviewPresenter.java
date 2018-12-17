@@ -2,6 +2,7 @@ package com.foxek.inature.ui.preview;
 
 import android.os.Bundle;
 
+import com.foxek.inature.R;
 import com.foxek.inature.ui.base.BasePresenter;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -41,11 +42,14 @@ public class PreviewPresenter extends BasePresenter<PreviewMvpView,PreviewMvpInt
 
     @Override
     public void createNewSensor(String name){
-        getView().showProgressBackground();
+        //getView().showProgressBackground();
         getDisposable().add(getInteractor().createNewSensor(name)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(() -> getView().startSensorActivity(), throwable -> getView().showError()));
+                .subscribe(() -> getView().startSensorActivity(), throwable -> {
+                    getView().showErrorHint(R.string.preview_error_sensor_exist);
+                    //getView().hideProgressBackground();
+                }));
     }
 
 }

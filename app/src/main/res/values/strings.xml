@@ -45,8 +45,8 @@
     <string name="rename_sensor_menu_item">Редактировать</string>
 
     <string name="preview_error_title">Датчик не найден</string>
-    <string name="preview_error_desc">Датчик такого типа не найден. Проверьте правильность введения данных</string>
-
+    <string name="preview_error_desc">Датчик такого типа не найден. Проверьте правильность введения данных и подключение к интернету</string>
+    <string name="preview_error_sensor_exist">Датчик с таким названием уже существует</string>
     <string name="instruction_title_1">Добро пожаловать</string>
     <string name="instruction_desc_1">Перед Вами приложение, предназначенное для дистанционного получения показаний с устройств проекта iNature</string>
 

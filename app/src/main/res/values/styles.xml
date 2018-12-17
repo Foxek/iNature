@@ -6,8 +6,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <!--<item name="android:windowBackground">@color/colorBackground</item>-->
-        <!--<item name="android:statusBarColor">@color/colorBackground</item>-->
+        <item name="android:windowActivityTransitions">true</item>
         <item name="android:dialogTheme">@style/CustomDialog</item>
     </style>
 

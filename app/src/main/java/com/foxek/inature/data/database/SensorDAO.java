@@ -15,7 +15,7 @@ import io.reactivex.Single;
 @Dao
 public interface SensorDAO {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.FAIL)
     void addSensor(Sensor sensor);
 
     @Query("SELECT * FROM sensor")

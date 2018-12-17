@@ -10,6 +10,8 @@ public interface PreviewMvpView extends MvpView {
 
     void showError();
 
+    void showErrorHint(int message);
+
     void hideProgressBackground();
 
     void showProgressBackground();

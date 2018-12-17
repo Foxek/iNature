@@ -79,14 +79,12 @@ public class PreviewActivity extends BaseView implements PreviewMvpView, View.On
 
     @Override
     public void showError() {
-
         mSensorType.setText(R.string.preview_error_title);
         mSensorDesc.setText(R.string.preview_error_desc);
-        mSensorLogo.setImageResource(R.drawable.ic_error_icon);
+        mSensorLogo.setImageResource(R.drawable.ic_sensor_no_exist_logo);
         mAppBarTitle.setVisibility(View.INVISIBLE);
         mSensorEditText.setVisibility(View.INVISIBLE);
         mAddButton.setVisibility(View.INVISIBLE);
-
     }
 
     @Override
@@ -106,13 +104,21 @@ public class PreviewActivity extends BaseView implements PreviewMvpView, View.On
         finish();
     }
 
+    @Override
+    public void showErrorHint(int message) {
+        mErrorHint.setVisibility(View.VISIBLE);
+        mErrorHint.setText(message);
+    }
+
     @OnClick(R.id.add_button)
     @Override
     public void onClick(View v) {
-        if (!mSensorEditText.getText().toString().isEmpty())
+        if (!mSensorEditText.getText().toString().isEmpty()) {
             mPresenter.createNewSensor(mSensorEditText.getText().toString());
+            mErrorHint.setVisibility(View.GONE);
+        }
         else
-            mErrorHint.setVisibility(View.VISIBLE);
+            showErrorHint(R.string.sensor_edit_dialog_error);
 
     }
 }
