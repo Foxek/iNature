@@ -3,6 +3,9 @@ package com.foxek.inature.di.module;
 import android.os.Bundle;
 
 import com.foxek.inature.di.PerActivity;
+import com.foxek.inature.ui.measure.MeasureInteractor;
+import com.foxek.inature.ui.measure.MeasureMvpPresenter;
+import com.foxek.inature.ui.measure.MeasurePresenter;
 import com.foxek.inature.ui.preview.PreviewInteractor;
 import com.foxek.inature.ui.preview.PreviewMvpPresenter;
 import com.foxek.inature.ui.preview.PreviewPresenter;
@@ -32,5 +35,11 @@ public class ActivityModule {
     @PerActivity
     PreviewMvpPresenter providePreviewPresenter(PreviewInteractor interactor){
         return new PreviewPresenter(interactor,args);
+    }
+
+    @Provides
+    @PerActivity
+    MeasureMvpPresenter provideMeasurePresenter(MeasureInteractor interactor){
+        return new MeasurePresenter(interactor,args);
     }
 }

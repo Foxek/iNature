@@ -43,11 +43,12 @@ public class SensorActivity extends BaseView implements SensorMvpView, View.OnCl
     }
 
     @Override
-    public void startMeasureActivity(int uid, String name, String icon)  {
+    public void startMeasureActivity(int uid, String name, String icon, String mac)  {
         Intent intent = new Intent(this, MeasureActivity.class);
-        intent.putExtra("sensor_uid", uid);
-        intent.putExtra("sensor_name", name);
-        intent.putExtra("sensor_icon", icon);
+        intent.putExtra("uid", uid);
+        intent.putExtra("name", name);
+        intent.putExtra("icon", icon);
+        intent.putExtra("mac", mac);
         startActivity(intent);
     }
 

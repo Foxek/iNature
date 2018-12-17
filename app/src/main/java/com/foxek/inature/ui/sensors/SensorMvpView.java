@@ -6,7 +6,7 @@ interface SensorMvpView extends MvpView {
 
     void setSensorList(SensorAdapter adapter);
 
-    void startMeasureActivity(int uid, String name, String icon);
+    void startMeasureActivity(int uid, String name, String icon, String mac);
 
     void startPreviewActivity(String name, String mac);
 

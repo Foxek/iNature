@@ -25,7 +25,6 @@ public class SensorInteractor implements SensorMvpInteractor{
 
     @Override
     public SensorAdapter createSensorListAdapter(){
-        //mLocalRepository.createSensor(new Sensor(1,"Тестовый датчик","Датчик влажности почвы", "00:00:00:00:00:00","ic_humidity_sensor_icon"));
         List<Sensor> sensors = new ArrayList<>();
         mSensorAdapter = new SensorAdapter(sensors);
         return mSensorAdapter;

@@ -37,7 +37,9 @@ public class SensorPresenter extends BasePresenter<SensorMvpView,SensorMvpIntera
         mDisposable.add(getInteractor().onSensorItemClick()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(sensor -> getView().startMeasureActivity(sensor.uid,sensor.getName(),sensor.getIcon()), throwable -> {}));
+                .subscribe(sensor ->
+                        getView().startMeasureActivity(sensor.uid,sensor.getName(),sensor.getIcon(),sensor.getAddress())
+                        , throwable -> {}));
 
     }
 

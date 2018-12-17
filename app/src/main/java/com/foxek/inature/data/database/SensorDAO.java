@@ -1,6 +1,7 @@
 package com.foxek.inature.data.database;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
@@ -26,4 +27,12 @@ public interface SensorDAO {
     @Query("SELECT COALESCE(MAX(uid), 0) FROM sensor")
     Single<Integer> getMaxPrimaryKey();
 
+    @Query("SELECT * FROM sensor WHERE uid IS :id")
+    Single<Sensor> getSensorById(int id);
+
+    @Query("DELETE FROM sensor WHERE uid = :id")
+    void deleteSensor(int id);
+
+    @Query("UPDATE sensor SET sensor_name = :name WHERE uid = :id")
+    void renameSensor(int id, String name);
 }

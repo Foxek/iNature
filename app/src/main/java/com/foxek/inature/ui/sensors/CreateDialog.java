@@ -32,10 +32,10 @@ public class CreateDialog extends BaseFragment implements View.OnClickListener {
     @Inject
     SensorMvpPresenter mPresenter;
 
-    @BindView(R.id.sensor_mac_edit_text)
+    @BindView(R.id.mac_edit_text)
     EditText mMacEditText;
 
-    @BindView(R.id.sensor_name_edit_text)
+    @BindView(R.id.name_edit_text)
     EditText mNameEditText;
 
     @BindView(R.id.error_hint)

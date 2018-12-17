@@ -30,18 +30,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.sensors.ScanActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".ui.preview.PreviewActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.preview.PreviewActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.measure.MeasureActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

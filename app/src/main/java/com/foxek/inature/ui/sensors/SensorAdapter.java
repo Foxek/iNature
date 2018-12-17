@@ -61,13 +61,13 @@ public class SensorAdapter extends RecyclerView.Adapter<SensorAdapter.ViewHolder
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        @BindView(R.id.sensot_item_name)
+        @BindView(R.id.sensor_name)
         TextView sensorName;
 
-        @BindView(R.id.sensor_item_description)
+        @BindView(R.id.sensor_description)
         TextView sensorType;
 
-        @BindView(R.id.sensor_item_logo)
+        @BindView(R.id.sensor_logo)
         ImageView sensorIcon;
 
         ViewHolder(View v) {

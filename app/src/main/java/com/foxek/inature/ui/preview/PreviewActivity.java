@@ -103,7 +103,7 @@ public class PreviewActivity extends BaseView implements PreviewMvpView, View.On
 
     @Override
     public void startSensorActivity() {
-        startActivity(new Intent(this, SensorActivity.class));
+        finish();
     }
 
     @OnClick(R.id.add_button)

@@ -33,11 +33,22 @@ public class LocalRepository {
         return mDatabase.getSensorDAO().getMaxPrimaryKey();
     }
 
+    public void deleteSensor(int id) {
+        mDatabase.getSensorDAO().deleteSensor(id);
+    }
+
+    public void renameSensor(int id, String name) {
+        mDatabase.getSensorDAO().renameSensor(id,name);
+    }
+
     public Completable createMeasures(int sensorId, List<Measure> measures){
         for (Measure measure : measures){
             measure.setSensorId(sensorId);
         }
         return Completable.fromAction(() -> mDatabase.getMeasureDAO().addAllMeasure(measures));
+    }
 
+    public Single<List<Measure>> getAllMeasure(int sensorId){
+        return mDatabase.getMeasureDAO().getAllMeasures(sensorId);
     }
 }

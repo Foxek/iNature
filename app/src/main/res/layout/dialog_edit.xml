@@ -15,7 +15,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_condensed_bold"
-        android:text="@string/add_new_sensor_dialog_title"
+        android:text="@string/add_new_sensor_title"
         android:textAlignment="center"
         android:textColor="@color/colorDark"
         android:textSize="24sp"
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto_condensed_regular"
-        android:text="@string/add_new_sensor_dialog_hint"
+        android:text="@string/add_new_sensor_dialog_description"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,64 +56,46 @@
         app:layout_constraintTop_toBottomOf="@+id/dialog_description"
         tools:ignore="Autofill"/>
 
-    <EditText
-        android:id="@+id/mac_edit_text"
-        style="@style/CustomEditText"
-        android:hint="@string/add_new_sensor_dialog_hint_mac"
-        android:textIsSelectable="false"
-        android:maxLength="17"
-        android:imeOptions="actionDone"
-        android:singleLine="true"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:inputType="textNoSuggestions"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_edit_text"
-        tools:ignore="Autofill"/>
-
-
-    <TextView
-        android:id="@+id/scan_button"
-        style="@style/CustomDialogButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/qr_code_no_scan"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_button" />
-
     <Button
-        android:id="@+id/add_button"
+        android:id="@+id/save_button"
         android:layout_width="0dp"
         android:layout_height="36dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/btn_accent_bg"
-        android:text="@string/next_button"
+        android:text="@string/save_button"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/error_hint" />
 
+
+    <TextView
+        android:id="@+id/delete_button"
+        style="@style/CustomDialogButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/delete_button"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/save_button" />
+
     <TextView
         android:id="@+id/error_hint"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="1dp"
         android:fontFamily="@font/roboto_condensed_regular"
+        android:text="@string/sensor_edit_dialog_error"
         android:textAlignment="center"
         android:textColor="@android:color/holo_red_light"
         android:textSize="14sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mac_edit_text" />
+        app:layout_constraintTop_toBottomOf="@+id/name_edit_text" />
 </android.support.constraint.ConstraintLayout>
