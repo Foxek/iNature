@@ -15,6 +15,7 @@ import com.foxek.inature.ui.sensors.SensorPresenter;
 
 import dagger.Module;
 import dagger.Provides;
+import io.reactivex.disposables.CompositeDisposable;
 
 @Module
 public class ActivityModule {
@@ -26,20 +27,25 @@ public class ActivityModule {
     }
 
     @Provides
-    @PerActivity
-    SensorMvpPresenter provideSensorPresenter(SensorInteractor interactor){
-        return new SensorPresenter(interactor);
+    CompositeDisposable provideCompositeDisposable() {
+        return new CompositeDisposable();
     }
 
     @Provides
     @PerActivity
-    PreviewMvpPresenter providePreviewPresenter(PreviewInteractor interactor){
-        return new PreviewPresenter(interactor,args);
+    SensorMvpPresenter provideSensorPresenter(SensorInteractor interactor, CompositeDisposable disposable){
+        return new SensorPresenter(interactor,disposable);
     }
 
     @Provides
     @PerActivity
-    MeasureMvpPresenter provideMeasurePresenter(MeasureInteractor interactor){
-        return new MeasurePresenter(interactor,args);
+    PreviewMvpPresenter providePreviewPresenter(PreviewInteractor interactor, CompositeDisposable disposable){
+        return new PreviewPresenter(interactor,disposable,args);
+    }
+
+    @Provides
+    @PerActivity
+    MeasureMvpPresenter provideMeasurePresenter(MeasureInteractor interactor, CompositeDisposable disposable){
+        return new MeasurePresenter(interactor,disposable,args);
     }
 }

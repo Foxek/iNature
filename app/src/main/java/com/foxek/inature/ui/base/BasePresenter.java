@@ -1,12 +1,17 @@
 package com.foxek.inature.ui.base;
 
+import io.reactivex.disposables.CompositeDisposable;
+
 public abstract class BasePresenter <V extends MvpView,I extends MvpInteractor> implements MvpPresenter<V,I> {
 
     private V view;
     private I interactor;
 
-    public BasePresenter(I mvpInteractor) {
+    private final CompositeDisposable disposable;
+
+    public BasePresenter(I mvpInteractor,CompositeDisposable compositeDisposable) {
         interactor = mvpInteractor;
+        disposable = compositeDisposable;
     }
 
     @Override
@@ -16,6 +21,7 @@ public abstract class BasePresenter <V extends MvpView,I extends MvpInteractor> 
 
     @Override
     public void detachView() {
+        disposable.dispose();
         view = null;
         interactor = null;
     }
@@ -30,4 +36,7 @@ public abstract class BasePresenter <V extends MvpView,I extends MvpInteractor> 
         return interactor;
     }
 
+    public CompositeDisposable getDisposable() {
+        return disposable;
+    }
 }

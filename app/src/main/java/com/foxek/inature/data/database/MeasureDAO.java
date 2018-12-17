@@ -9,7 +9,6 @@ import com.foxek.inature.data.database.model.Measure;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 @Dao

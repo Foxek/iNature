@@ -37,11 +37,13 @@
             android:id="@+id/sensor_image"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_marginTop="128dp"
+            android:layout_marginBottom="8dp"
             android:transitionName="imageTransition"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/app_bar_title"
+            app:layout_constraintVertical_bias="0.23000002"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -63,27 +65,27 @@
             android:layout_width="0dp"
             android:layout_height="36dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
             android:layout_marginEnd="35dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/btn_accent_bg"
             android:text="@string/add_button"
             android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/error_hint" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/sensor_edit_text"
             style="@style/CustomEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="46dp"
             android:layout_marginStart="46dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="46dp"
             android:ems="10"
+            android:inputType="text|textCapSentences|textNoSuggestions"
             android:hint="@string/add_new_sensor_dialog_hint_name"
             android:imeOptions="actionDone"
-            android:inputType="textNoSuggestions"
             android:singleLine="true"
             android:textAlignment="center"
             android:textColorLink="@color/colorAccent"
@@ -91,7 +93,8 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sensor_desc"/>
+            app:layout_constraintTop_toBottomOf="@+id/sensor_desc"
+            tools:ignore="Autofill" />
 
 
         <TextView

@@ -11,12 +11,10 @@ import io.reactivex.schedulers.Schedulers;
 
 public class PreviewPresenter extends BasePresenter<PreviewMvpView,PreviewMvpInteractor> implements PreviewMvpPresenter {
 
-    private CompositeDisposable mDisposable;
     private Bundle args;
 
-    public PreviewPresenter(PreviewMvpInteractor interactor, Bundle args){
-        super(interactor);
-        mDisposable = new CompositeDisposable();
+    public PreviewPresenter(PreviewMvpInteractor interactor, CompositeDisposable disposable, Bundle args){
+        super(interactor,disposable);
         this.args = args;
     }
 
@@ -28,11 +26,11 @@ public class PreviewPresenter extends BasePresenter<PreviewMvpView,PreviewMvpInt
     @Override
     public void detachView() {
         super.detachView();
-        mDisposable.dispose();
+        getDisposable().dispose();
     }
 
     private void getSensorInfo(String productId, String macAddress){
-        mDisposable.add(getInteractor().getDefaultSensorInfo(productId,macAddress)
+        getDisposable().add(getInteractor().getDefaultSensorInfo(productId,macAddress)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(sensorResponse ->{
@@ -44,7 +42,7 @@ public class PreviewPresenter extends BasePresenter<PreviewMvpView,PreviewMvpInt
     @Override
     public void createNewSensor(String name){
         getView().showProgressBackground();
-        mDisposable.add(getInteractor().createNewSensor(name)
+        getDisposable().add(getInteractor().createNewSensor(name)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> getView().startSensorActivity(), throwable -> getView().showError()));

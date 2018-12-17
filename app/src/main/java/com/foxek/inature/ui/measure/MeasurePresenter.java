@@ -9,19 +9,17 @@ import io.reactivex.disposables.CompositeDisposable;
 
 public class MeasurePresenter extends BasePresenter<MeasureMvpView,MeasureMvpInteractor> implements MeasureMvpPresenter {
 
-    private CompositeDisposable mDisposable;
     private Bundle args;
 
-    public MeasurePresenter(MeasureMvpInteractor interactor, Bundle args){
-        super(interactor);
-        mDisposable = new CompositeDisposable();
+    public MeasurePresenter(MeasureMvpInteractor interactor, CompositeDisposable disposable, Bundle args){
+        super(interactor,disposable);
         this.args = args;
     }
 
     @Override
     public void detachView() {
         super.detachView();
-        mDisposable.dispose();
+        getDisposable().dispose();
     }
 
     @Override
@@ -33,7 +31,7 @@ public class MeasurePresenter extends BasePresenter<MeasureMvpView,MeasureMvpInt
 
     private void createMeasureListAdapter (){
         getView().setMeasureList(getInteractor().createSensorListAdapter());
-        mDisposable.add(getInteractor().scheduleListChanged(args.getInt("uid")));
+        getDisposable().add(getInteractor().scheduleListChanged(args.getInt("uid")));
     }
 
 
