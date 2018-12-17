@@ -35,12 +35,19 @@ public class PreviewPresenter extends BasePresenter<PreviewMvpView,PreviewMvpInt
         mDisposable.add(getInteractor().getDefaultSensorInfo(productId,macAddress)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(sensorResponse -> {
+                .subscribe(sensorResponse ->{
                     getView().setSensorPreview(sensorResponse.getType(),sensorResponse.getDescription(),sensorResponse.getIcon());
-                }, throwable -> {}));
+                    getView().hideProgressBackground();
+                    }, throwable -> getView().showError()));
     }
 
-    public void getMeasureTemplate(String productId){
-        mDisposable.add(getInteractor().getMeasureTemplate(productId));
+    @Override
+    public void createNewSensor(String name){
+        getView().showProgressBackground();
+        mDisposable.add(getInteractor().createNewSensor(name)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(() -> getView().startSensorActivity(), throwable -> getView().showError()));
     }
+
 }

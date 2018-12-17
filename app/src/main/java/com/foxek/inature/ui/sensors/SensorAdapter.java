@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.foxek.inature.R;
-import com.foxek.inature.data.model.Sensor;
+import com.foxek.inature.data.database.model.Sensor;
 
 import java.util.List;
 

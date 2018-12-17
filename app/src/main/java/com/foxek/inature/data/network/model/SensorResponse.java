@@ -1,7 +1,9 @@
-package com.foxek.inature.data.network;
+package com.foxek.inature.data.network.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class SensorResponse {
 
@@ -16,6 +18,10 @@ public class SensorResponse {
     @SerializedName("type")
     @Expose
     private String type;
+
+    @Expose
+    @SerializedName("Measure")
+    private List<MeasureMeta> measureMetaInfo;
 
     public String getDescription() {
         return description;
@@ -40,4 +46,13 @@ public class SensorResponse {
     public void setType(String type) {
         this.type = type;
     }
+
+    public List<MeasureMeta> getMeasureMetaInfo() {
+        return measureMetaInfo;
+    }
+
+    public void setMeasureMetaInfo(List<MeasureMeta> measureMetaInfo) {
+        this.measureMetaInfo = measureMetaInfo;
+    }
+
 }

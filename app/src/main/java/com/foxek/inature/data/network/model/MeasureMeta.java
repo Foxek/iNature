@@ -1,9 +1,9 @@
-package com.foxek.inature.data.network;
+package com.foxek.inature.data.network.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class MeasureResponse {
+public class MeasureMeta {
 
     @SerializedName("icon")
     @Expose

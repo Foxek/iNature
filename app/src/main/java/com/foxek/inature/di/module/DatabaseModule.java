@@ -3,7 +3,7 @@ package com.foxek.inature.di.module;
 import android.app.Application;
 import android.arch.persistence.room.Room;
 
-import com.foxek.inature.data.SensorDatabase;
+import com.foxek.inature.data.database.SensorDatabase;
 import com.foxek.inature.di.DatabaseHelper;
 
 import dagger.Module;

@@ -62,20 +62,18 @@
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="36dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="35dp"
             android:background="@drawable/btn_accent_bg"
             android:text="@string/add_button"
             android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sensor_edit_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/error_hint" />
 
         <EditText
-            android:id="@+id/sensor_edit_layout"
+            android:id="@+id/sensor_edit_text"
             style="@style/CustomEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -127,13 +125,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sensor_name" />
 
+        <TextView
+            android:id="@+id/error_hint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/sensor_edit_dialog_error"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sensor_edit_text" />
+
         <View
             android:id="@+id/progress_background"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@color/colorBackground"
             android:translationZ="4dp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -149,7 +164,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:translationZ="4dp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

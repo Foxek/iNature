@@ -1,8 +1,7 @@
 package com.foxek.inature.data.network;
 
+import com.foxek.inature.data.network.model.SensorResponse;
 import com.foxek.inature.di.NetworkHelper;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -20,9 +19,4 @@ public class RemoteRepository {
     public Single<SensorResponse> getSensorInfo(String productId){
         return mApiHelper.getSensor(productId);
     }
-
-    public Single<List<MeasureResponse>> getMeasureTemplate(String productId){
-        return mApiHelper.getMeasure(productId);
-    }
-
 }

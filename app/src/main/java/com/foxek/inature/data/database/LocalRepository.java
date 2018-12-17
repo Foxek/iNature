@@ -1,0 +1,43 @@
+package com.foxek.inature.data.database;
+
+import com.foxek.inature.data.database.model.Measure;
+import com.foxek.inature.data.database.model.Sensor;
+import com.foxek.inature.di.DatabaseHelper;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import io.reactivex.Completable;
+import io.reactivex.Flowable;
+import io.reactivex.Single;
+
+public class LocalRepository {
+
+    private SensorDatabase      mDatabase;
+
+    @Inject
+    LocalRepository(@DatabaseHelper SensorDatabase database){
+        mDatabase = database;
+    }
+
+    public Flowable<List<Sensor>> getAllSensors(){
+        return mDatabase.getSensorDAO().getAllSensors();
+    }
+
+    public Completable createSensor(Sensor sensor) {
+        return Completable.fromAction(() -> mDatabase.getSensorDAO().addSensor(sensor));
+    }
+
+    public Single<Integer> getMaxPrimaryKey(){
+        return mDatabase.getSensorDAO().getMaxPrimaryKey();
+    }
+
+    public Completable createMeasures(int sensorId, List<Measure> measures){
+        for (Measure measure : measures){
+            measure.setSensorId(sensorId);
+        }
+        return Completable.fromAction(() -> mDatabase.getMeasureDAO().addAllMeasure(measures));
+
+    }
+}

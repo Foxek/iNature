@@ -3,7 +3,7 @@ package com.foxek.inature.di.component;
 import android.content.Context;
 
 import com.foxek.inature.common.BaseApplication;
-import com.foxek.inature.data.SensorDatabase;
+import com.foxek.inature.data.database.SensorDatabase;
 import com.foxek.inature.data.network.ApiHelper;
 import com.foxek.inature.di.ApplicationContext;
 import com.foxek.inature.di.DatabaseHelper;
