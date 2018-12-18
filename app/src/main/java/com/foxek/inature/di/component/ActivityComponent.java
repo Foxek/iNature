@@ -5,7 +5,7 @@ import com.foxek.inature.di.module.ActivityModule;
 import com.foxek.inature.ui.measure.EditDialog;
 import com.foxek.inature.ui.measure.MeasureActivity;
 import com.foxek.inature.ui.preview.PreviewActivity;
-import com.foxek.inature.ui.sensors.CreateDialog;
+import com.foxek.inature.ui.sensors.dialogs.CreateDialog;
 import com.foxek.inature.ui.sensors.SensorActivity;
 
 import dagger.Component;

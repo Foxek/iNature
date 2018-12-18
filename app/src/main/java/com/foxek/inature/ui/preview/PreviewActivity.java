@@ -28,9 +28,6 @@ public class PreviewActivity extends BaseView implements PreviewMvpView, View.On
     @BindView(R.id.sensor_name)
     TextView mSensorType;
 
-    @BindView(R.id.app_bar_title)
-    TextView mAppBarTitle;
-
     @BindView(R.id.sensor_image)
     ImageView mSensorLogo;
 
@@ -39,9 +36,6 @@ public class PreviewActivity extends BaseView implements PreviewMvpView, View.On
 
     @BindView(R.id.sensor_edit_text)
     EditText mSensorEditText;
-
-    @BindView(R.id.add_button)
-    Button mAddButton;
 
     @BindView(R.id.progress_background)
     View mProgressBackground;
@@ -94,6 +88,13 @@ public class PreviewActivity extends BaseView implements PreviewMvpView, View.On
         Intent intent = new Intent(this, SensorActivity.class);
         intent.putExtra(Constants.CREATE_STATE, state);
         startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, SensorActivity.class));
+        finish();
     }
 
     @Override
@@ -102,15 +103,14 @@ public class PreviewActivity extends BaseView implements PreviewMvpView, View.On
         mErrorHint.setText(message);
     }
 
-    @OnClick(R.id.add_button)
+    @OnClick({R.id.add_button})
     @Override
     public void onClick(View v) {
-        if (!mSensorEditText.getText().toString().isEmpty()) {
-            mPresenter.createNewSensor(mSensorEditText.getText().toString());
-            mErrorHint.setVisibility(View.GONE);
-        }
-        else
-            showErrorHint(R.string.sensor_edit_dialog_error);
+                if (!mSensorEditText.getText().toString().isEmpty()) {
+                    mPresenter.createNewSensor(mSensorEditText.getText().toString());
+                    mErrorHint.setVisibility(View.GONE);
+                } else
+                    showErrorHint(R.string.sensor_edit_dialog_error);
 
     }
 }

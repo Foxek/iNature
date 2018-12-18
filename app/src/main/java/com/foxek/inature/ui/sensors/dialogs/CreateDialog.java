@@ -1,4 +1,4 @@
-package com.foxek.inature.ui.sensors;
+package com.foxek.inature.ui.sensors.dialogs;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.foxek.inature.R;
 import com.foxek.inature.di.component.ActivityComponent;
 import com.foxek.inature.ui.base.BaseFragment;
+import com.foxek.inature.ui.sensors.SensorMvpPresenter;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

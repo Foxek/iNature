@@ -10,6 +10,8 @@ import com.foxek.inature.R;
 import com.foxek.inature.ui.base.BaseView;
 import com.foxek.inature.ui.measure.MeasureActivity;
 import com.foxek.inature.ui.preview.PreviewActivity;
+import com.foxek.inature.ui.sensors.dialogs.CreateDialog;
+import com.foxek.inature.ui.sensors.dialogs.StateDialog;
 
 import javax.inject.Inject;
 

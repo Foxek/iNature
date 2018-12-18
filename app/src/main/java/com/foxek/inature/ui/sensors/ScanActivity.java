@@ -9,6 +9,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
+import com.foxek.inature.data.database.model.Sensor;
 import com.foxek.inature.ui.preview.PreviewActivity;
 import com.google.zxing.Result;
 
@@ -36,6 +37,12 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this, SensorActivity.class));
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         requestPermission();
@@ -46,6 +53,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         super.onPause();
         mScannerView.stopCamera();
     }
+
     private void requestPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ) {
             ActivityCompat

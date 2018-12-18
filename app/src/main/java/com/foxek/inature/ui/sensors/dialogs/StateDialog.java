@@ -1,4 +1,4 @@
-package com.foxek.inature.ui.sensors;
+package com.foxek.inature.ui.sensors.dialogs;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,9 +13,6 @@ import android.widget.TextView;
 
 import com.foxek.inature.R;
 import com.foxek.inature.ui.base.BaseFragment;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,11 +54,11 @@ public class StateDialog extends BaseFragment implements View.OnClickListener {
         mBinder = ButterKnife.bind(this,view);
 
         if (getArguments().getBoolean("state")){
-            mDialogLogo.setImageResource(R.drawable.ic_sensor_no_exist_logo);
+            mDialogLogo.setImageResource(R.drawable.ic_add_success_icon);
             mDialogTitle.setText(R.string.preview_success_title);
             mDialogDesc.setText(R.string.preview_success_desc);
         }else{
-            mDialogLogo.setImageResource(R.drawable.ic_sensor_no_exist_logo);
+            mDialogLogo.setImageResource(R.drawable.ic_add_error_icon);
             mDialogTitle.setText(R.string.preview_error_title);
             mDialogDesc.setText(R.string.preview_error_desc);
         }

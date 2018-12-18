@@ -141,6 +141,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_sensor_no_exist_logo" />
+            app:srcCompat="@drawable/ic_add_error_icon" />
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

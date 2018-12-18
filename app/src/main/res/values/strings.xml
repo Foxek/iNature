@@ -28,6 +28,7 @@
     <string name="add_new_sensor_dialog_title">Создание датчика</string>
     <string name="add_new_sensor_dialog_hint_mac">Введите mac-адрес устройства</string>
     <string name="add_new_sensor_dialog_hint_name">Введите тип устройства</string>
+    <string name="add_sensor_dialog_hint_name">Введите имя датчика</string>
 
     <string name="qr_code_title">Просканируйте QR-код</string>
     <string name="qr_code_description">Отсканировать QR-код</string>

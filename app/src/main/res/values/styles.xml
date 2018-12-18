@@ -13,8 +13,8 @@
     <style name="CustomDialog" parent="@style/Theme.AppCompat.Light.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@drawable/dialog_bg</item>
-        <item name="android:windowMinWidthMajor">90%</item>
-        <item name="android:windowMinWidthMinor">90%</item>
+        <item name="android:windowMinWidthMajor">80%</item>
+        <item name="android:windowMinWidthMinor">80%</item>
     </style>
 
     <style name="CustomInfoDialog" parent="@style/Theme.AppCompat.Light.Dialog">
