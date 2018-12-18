@@ -9,4 +9,10 @@ public class Constants {
     public final static String DELIMITER = "!#!";
 
     public static final String EXTRA_ARGS = "args";
+
+
+
+    public static final String CREATE_STATE = "create_state";
+    public static final boolean SUCCESS = true;
+    public static final boolean ERROR = false;
 }

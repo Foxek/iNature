@@ -34,7 +34,7 @@ public class ActivityModule {
     @Provides
     @PerActivity
     SensorMvpPresenter provideSensorPresenter(SensorInteractor interactor, CompositeDisposable disposable){
-        return new SensorPresenter(interactor,disposable);
+        return new SensorPresenter(interactor,disposable,args);
     }
 
     @Provides

@@ -3,10 +3,9 @@ package com.foxek.inature.ui.preview;
 import android.os.Bundle;
 
 import com.foxek.inature.R;
+import com.foxek.inature.common.Constants;
 import com.foxek.inature.ui.base.BasePresenter;
 
-import io.reactivex.Observable;
-import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -34,19 +33,14 @@ public class PreviewPresenter extends BasePresenter<PreviewMvpView,PreviewMvpInt
 
     private void getSensorInfo(String productId, String macAddress){
         getDisposable().add(getInteractor().getDefaultSensorInfo(productId,macAddress)
-//                .onErrorResumeNext(Single.error(new RuntimeException("NoSensor")))
-//                .doOnError(throwable ->{
-//                    getView().showError();
-//                    getView().hideProgressBackground();
-//                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(sensorResponse ->{
                     getView().setSensorPreview(sensorResponse.getType(),sensorResponse.getDescription(),sensorResponse.getIcon());
                     getView().hideProgressBackground();
                     }, throwable -> {
-                    getView().showError();
-                    getView().hideProgressBackground();
+                    getView().startSensorActivity(Constants.ERROR);
+//                    getView().hideProgressBackground();
                 }));
     }
 
@@ -56,7 +50,7 @@ public class PreviewPresenter extends BasePresenter<PreviewMvpView,PreviewMvpInt
         getDisposable().add(getInteractor().createNewSensor(name)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(() -> getView().startSensorActivity(), throwable -> {
+                .subscribe(() -> getView().startSensorActivity(Constants.SUCCESS), throwable -> {
                     getView().showErrorHint(R.string.preview_error_sensor_exist);
                     //getView().hideProgressBackground();
                 }));

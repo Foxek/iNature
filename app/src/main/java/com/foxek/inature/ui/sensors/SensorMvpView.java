@@ -12,5 +12,5 @@ interface SensorMvpView extends MvpView {
 
     void startScanActivity();
 
-
+    void showStateDialog(boolean state);
 }

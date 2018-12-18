@@ -58,11 +58,19 @@ public class SensorActivity extends BaseView implements SensorMvpView, View.OnCl
         intent.putExtra("product_id", name);
         intent.putExtra("mac_address", mac);
         startActivity(intent);
+        finish();
     }
 
     @Override
     public void startScanActivity() {
         startActivity(new Intent(this, ScanActivity.class));
+        finish();
+    }
+
+    @Override
+    public void showStateDialog(boolean state) {
+        StateDialog mStateDialog = StateDialog.newInstance(state);
+        mStateDialog.show(getSupportFragmentManager(), "stateDialog");
     }
 
     @Override

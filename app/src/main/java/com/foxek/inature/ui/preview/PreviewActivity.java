@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.foxek.inature.R;
+import com.foxek.inature.common.Constants;
 import com.foxek.inature.ui.base.BaseView;
 import com.foxek.inature.ui.sensors.SensorActivity;
 
@@ -100,8 +101,11 @@ public class PreviewActivity extends BaseView implements PreviewMvpView, View.On
     }
 
     @Override
-    public void startSensorActivity() {
-        finish();
+    public void startSensorActivity(boolean state) {
+        Intent intent = new Intent(this, SensorActivity.class);
+        intent.putExtra(Constants.CREATE_STATE, state);
+        startActivity(intent);
+//        finish();
     }
 
     @Override
