@@ -24,8 +24,9 @@ public class SensorPresenter extends BasePresenter<SensorMvpView,SensorMvpIntera
 
     @Override
     public void viewIsReady() {
-        if (args != null)
-            getView().showStateDialog(args.getBoolean(Constants.CREATE_STATE));
+        if ((args != null))
+            if (args.containsKey(Constants.CREATE_STATE))
+                getView().showStateDialog(args.getBoolean(Constants.CREATE_STATE));
 
         createSensorListAdapter();
     }

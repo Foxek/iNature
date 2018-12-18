@@ -17,6 +17,13 @@
         <item name="android:windowMinWidthMinor">90%</item>
     </style>
 
+    <style name="CustomInfoDialog" parent="@style/Theme.AppCompat.Light.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/dialog_bg</item>
+        <item name="android:windowMinWidthMajor">80%</item>
+        <item name="android:windowMinWidthMinor">80%</item>
+    </style>
+
     <style name="CustomEditText" parent="android:Widget.EditText">
         <item name="android:backgroundTint">@color/colorTint</item>
         <item name="android:textColor">@color/colorDark</item>
