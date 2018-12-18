@@ -1,6 +1,7 @@
 package com.foxek.inature.ui.sensors;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -12,6 +13,9 @@ import android.widget.TextView;
 
 import com.foxek.inature.R;
 import com.foxek.inature.ui.base.BaseFragment;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -63,6 +67,13 @@ public class StateDialog extends BaseFragment implements View.OnClickListener {
         }
 
         getDialog().setCanceledOnTouchOutside(false);
+
+        new Handler().postDelayed(() -> {
+            if (getDialog().isShowing()){
+                getDialog().dismiss();
+            }
+        }, 2000);
+
         return view;
     }
 

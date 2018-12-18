@@ -75,17 +75,6 @@ public class PreviewActivity extends BaseView implements PreviewMvpView, View.On
         mSensorDesc.setText(desc);
         mSensorLogo.setImageResource(getResources()
                 .getIdentifier("com.foxek.inature:drawable/"+ icon,null,null));
-
-    }
-
-    @Override
-    public void showError() {
-        mSensorType.setText(R.string.preview_error_title);
-        mSensorDesc.setText(R.string.preview_error_desc);
-        mSensorLogo.setImageResource(R.drawable.ic_sensor_no_exist_logo);
-        mAppBarTitle.setVisibility(View.INVISIBLE);
-        mSensorEditText.setVisibility(View.INVISIBLE);
-        mAddButton.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -105,7 +94,6 @@ public class PreviewActivity extends BaseView implements PreviewMvpView, View.On
         Intent intent = new Intent(this, SensorActivity.class);
         intent.putExtra(Constants.CREATE_STATE, state);
         startActivity(intent);
-//        finish();
     }
 
     @Override
