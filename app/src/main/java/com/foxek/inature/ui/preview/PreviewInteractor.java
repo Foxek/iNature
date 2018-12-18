@@ -13,6 +13,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Completable;
+import io.reactivex.Observable;
 import io.reactivex.Single;
 
 public class PreviewInteractor implements PreviewMvpInteractor {
@@ -42,6 +43,8 @@ public class PreviewInteractor implements PreviewMvpInteractor {
                     }
                     return sensorResponse;
                 });
+//                .onErrorResumeNext(throwable -> Single.error(new RuntimeException(" ")));
+//                .onErrorResumeNext(Single.error(new RuntimeException("NoSensor")));
     }
 
     @Override

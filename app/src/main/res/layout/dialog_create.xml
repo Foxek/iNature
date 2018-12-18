@@ -10,17 +10,32 @@
     android:paddingEnd="@dimen/dialog_horizontal_padding"
     android:paddingBottom="@dimen/dialog_vertical_padding">
 
+    <ImageView
+        android:id="@+id/dialog_logo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_add_sensor_icon"
+        tools:ignore="ContentDescription" />
+
     <TextView
         android:id="@+id/dialog_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/roboto_condensed_bold"
         android:text="@string/add_new_sensor_dialog_title"
+        android:textAlignment="center"
         android:textColor="@color/colorDark"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/dialog_logo" />
 
     <TextView
         android:id="@+id/dialog_description"
@@ -29,6 +44,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto_condensed_regular"
         android:text="@string/add_new_sensor_dialog_hint"
+        android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,12 +108,12 @@
         android:id="@+id/add_button"
         android:layout_width="0dp"
         android:layout_height="36dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/btn_accent_bg"
         android:text="@string/next_button"
         android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/mac_edit_text"
+        app:layout_constraintStart_toStartOf="@+id/mac_edit_text"
         app:layout_constraintTop_toBottomOf="@+id/error_hint" />
 
     <TextView
@@ -114,4 +130,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mac_edit_text" />
+
 </android.support.constraint.ConstraintLayout>

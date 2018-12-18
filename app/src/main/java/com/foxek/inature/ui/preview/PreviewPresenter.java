@@ -5,6 +5,8 @@ import android.os.Bundle;
 import com.foxek.inature.R;
 import com.foxek.inature.ui.base.BasePresenter;
 
+import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -32,12 +34,20 @@ public class PreviewPresenter extends BasePresenter<PreviewMvpView,PreviewMvpInt
 
     private void getSensorInfo(String productId, String macAddress){
         getDisposable().add(getInteractor().getDefaultSensorInfo(productId,macAddress)
+//                .onErrorResumeNext(Single.error(new RuntimeException("NoSensor")))
+//                .doOnError(throwable ->{
+//                    getView().showError();
+//                    getView().hideProgressBackground();
+//                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(sensorResponse ->{
                     getView().setSensorPreview(sensorResponse.getType(),sensorResponse.getDescription(),sensorResponse.getIcon());
                     getView().hideProgressBackground();
-                    }, throwable -> getView().showError()));
+                    }, throwable -> {
+                    getView().showError();
+                    getView().hideProgressBackground();
+                }));
     }
 
     @Override
