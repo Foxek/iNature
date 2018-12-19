@@ -13,4 +13,8 @@ public interface MeasureMvpView extends MvpView {
     void setSensorName(String name);
 
     void showEditDialog(String name);
+
+    void bluetoothEnableRequest();
+
+    void showSnackBar(int message);
 }

@@ -1,6 +1,10 @@
 package com.foxek.inature.ui.measure;
 
+import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +21,8 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.foxek.inature.common.Constants.REQUEST_ENABLE_BT;
 
 public class MeasureActivity extends BaseView implements MeasureMvpView, View.OnClickListener{
 
@@ -89,6 +95,12 @@ public class MeasureActivity extends BaseView implements MeasureMvpView, View.On
         mAppTitle.setText(name);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mPresenter.finishBluetooth();
+    }
+
     @OnClick({R.id.app_bar_back_button, R.id.app_bar_edit_button})
     @Override
     public void onClick(View v) {
@@ -101,4 +113,33 @@ public class MeasureActivity extends BaseView implements MeasureMvpView, View.On
                 break;
         }
     }
+
+    @Override
+    public void bluetoothEnableRequest() {
+        Intent enableBTIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+        startActivityForResult(enableBTIntent, REQUEST_ENABLE_BT);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == REQUEST_ENABLE_BT && resultCode == Activity.RESULT_CANCELED) {
+            mPresenter.bluetoothNotEnabled();
+            return;
+        }else{
+            mPresenter.bluetoothEnabled();
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void showSnackBar(int message) {
+        Snackbar.make(mMeasureContainer, message, Snackbar.LENGTH_INDEFINITE)
+                .setAction(R.string.bluetooth_request_button, snackbarOnClickListener)
+                .show();
+    }
+
+    View.OnClickListener snackbarOnClickListener = view ->
+            bluetoothEnableRequest();
 }

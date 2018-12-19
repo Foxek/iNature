@@ -1,6 +1,7 @@
 package com.foxek.inature.common;
 
 public class Constants {
+    public final static String NEW_DEVICE_FOUND = "com.example.bluetooth.le.NEW_DEVICE_FOUND";
     public final static int REQUEST_CODE_ASK_PERMISSIONS = 123;
     public final static int MY_CAMERA_REQUEST_CODE = 100;
     public final static int REQUEST_ENABLE_BT = 10;

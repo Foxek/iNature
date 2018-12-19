@@ -43,15 +43,17 @@ public class MeasureAdapter extends RecyclerView.Adapter<MeasureAdapter.ViewHold
         mMeasure.addAll(measures);
         notifyDataSetChanged();
     }
-//    public void parseAdvertisingData(byte[] data) {
-//        int measure,position = 0;
-//        for (int i = 0; i < mMeasure.size()*2; i+=2){
-//            measure = ((data[i] & 0xff) << 8) | (data[i+1] & 0xff);
-//            mMeasure.get(position).setValue(mMeasure.get(position).parseCayennePayload(measure,mMeasure.get(position).name));
-//            position++;
-//        }
-//        notifyDataSetChanged();
-//    }
+
+    public void parseAdvertisingData(byte[] data) {
+        int measure,position = 0;
+        for (int i = 0; i < mMeasure.size()*2; i+=2){
+            measure = ((data[i] & 0xff) << 8) | (data[i+1] & 0xff);
+            mMeasure.get(position).setValue(mMeasure.get(position).parseCayennePayload(measure,mMeasure.get(position).getName()));
+            position++;
+        }
+        notifyDataSetChanged();
+    }
+
 
     @NonNull
     @Override

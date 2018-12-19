@@ -3,6 +3,7 @@ package com.foxek.inature.ui.measure;
 import android.os.Bundle;
 
 import com.foxek.inature.R;
+
 import com.foxek.inature.ui.base.BasePresenter;
 
 import io.reactivex.disposables.CompositeDisposable;
@@ -19,21 +20,23 @@ public class MeasurePresenter extends BasePresenter<MeasureMvpView,MeasureMvpInt
     @Override
     public void detachView() {
         super.detachView();
-        getDisposable().dispose();
     }
 
     @Override
     public void viewIsReady() {
         createMeasureListAdapter();
         getView().showSensorPreview(args.getString("name"), args.getString("icon"));
-        getView().setSearchStatus(R.string.bluetooth_enabled,R.string.bluetooth_enabled_desc);
+
+        if (getInteractor().prepareBluetooth())
+            bluetoothEnabled();
+        else
+            getView().bluetoothEnableRequest();
     }
 
     private void createMeasureListAdapter (){
         getView().setMeasureList(getInteractor().createSensorListAdapter());
         getDisposable().add(getInteractor().scheduleListChanged(args.getInt("uid")));
     }
-
 
     @Override
     public void deleteSensor() {
@@ -49,5 +52,23 @@ public class MeasurePresenter extends BasePresenter<MeasureMvpView,MeasureMvpInt
     @Override
     public void editButtonPressed() {
         getView().showEditDialog(args.getString("name"));
+    }
+
+    @Override
+    public void bluetoothNotEnabled(){
+        getView().setSearchStatus(R.string.bluetooth_enabled,R.string.bluetooth_enabled_desc);
+        getView().showSnackBar(R.string.bluetooth_request);
+    }
+
+    @Override
+    public void bluetoothEnabled(){
+        getView().setSearchStatus(R.string.bluetooth_search,R.string.bluetooth_search_desc);
+        getInteractor().bluetoothStartScanning("Pixel");
+        getDisposable().add(getInteractor().onBluetoothDataChanged(args.getString("mac")));
+    }
+
+    @Override
+    public void finishBluetooth() {
+        getInteractor().bluetoothStopScanning();
     }
 }

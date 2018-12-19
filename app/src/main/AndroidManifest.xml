@@ -39,6 +39,8 @@
         <activity
             android:name=".ui.measure.MeasureActivity"
             android:screenOrientation="portrait" />
+
+        <service android:name=".data.BluetoothHelper" />
     </application>
 
 </manifest>

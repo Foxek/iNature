@@ -1,7 +1,9 @@
 package com.foxek.inature.di.module;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import com.foxek.inature.di.ApplicationContext;
 import com.foxek.inature.di.PerActivity;
 import com.foxek.inature.ui.measure.MeasureInteractor;
 import com.foxek.inature.ui.measure.MeasureMvpPresenter;

@@ -9,4 +9,10 @@ public interface MeasureMvpPresenter extends MvpPresenter<MeasureMvpView,Measure
     void renameSensor(String name);
 
     void editButtonPressed();
+
+    void bluetoothNotEnabled();
+
+    void bluetoothEnabled();
+
+    void finishBluetooth();
 }
