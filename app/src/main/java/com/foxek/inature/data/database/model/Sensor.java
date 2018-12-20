@@ -14,8 +14,8 @@ public class Sensor {
     @ColumnInfo(name = "sensor_name")
     private String name;
 
-    @ColumnInfo(name = "sensor_type")
-    private String type;
+    @ColumnInfo(name = "sensor_description")
+    private String description;
 
     @ColumnInfo(name = "sensor_mac")
     private String address;
@@ -23,10 +23,13 @@ public class Sensor {
     @ColumnInfo(name = "sensor_icon")
     private String icon;
 
-    public Sensor(int uid, String name, String type, String address, String icon) {
+    @ColumnInfo(name = "sensor_type")
+    private String type;
+
+    public Sensor(int uid, String name, String description, String address, String icon) {
         this.uid = uid;
         this.name = name;
-        this.type = type;
+        this.description = description;
         this.address = address;
         this.icon = icon;
     }
@@ -65,5 +68,13 @@ public class Sensor {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

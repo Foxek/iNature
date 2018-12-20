@@ -11,7 +11,6 @@ import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.content.Context;
 
-import com.foxek.inature.data.database.model.Sensor;
 import com.foxek.inature.di.ApplicationContext;
 
 import java.util.ArrayList;
@@ -29,11 +28,12 @@ public class BluetoothHelper {
     private BluetoothGatt               mBluetoothGatt;
     private BluetoothLeScanner          mBluetoothScanner;
     public boolean                      mScanState = false;
+    private String                      mMacAddress;
 
     private PublishSubject<ScanResult> scanResultSubject;
 
     @Inject
-    public BluetoothHelper(@ApplicationContext Context context){
+    BluetoothHelper(@ApplicationContext Context context){
         mContext = context;
         scanResultSubject = PublishSubject.create();
     }
@@ -52,7 +52,7 @@ public class BluetoothHelper {
         return checkBluetoothEnabled();
     }
 
-    public boolean checkBluetoothEnabled(){
+    private boolean checkBluetoothEnabled(){
         return mBluetoothAdapter != null && mBluetoothAdapter.isEnabled();
     }
 
@@ -64,7 +64,8 @@ public class BluetoothHelper {
         mBluetoothGatt = null;
     }
 
-    public void startScanning(String device) {
+    public void startScanning(String device, String mac) {
+        mMacAddress = mac;
         mBluetoothScanner = mBluetoothAdapter.getBluetoothLeScanner();
         ScanFilter scanFilter = new ScanFilter.Builder()
                 .setDeviceName(device)
@@ -90,7 +91,9 @@ public class BluetoothHelper {
     private ScanCallback mScanCallback = new ScanCallback() {
         @Override
         public void onScanResult(int callbackType, ScanResult result) {
-            scanResultSubject.onNext(result);
+            if (result.getDevice().getAddress().equals(mMacAddress))
+                scanResultSubject.onNext(result);
         }
     };
 }
+//7b e8 01 01 ad cf

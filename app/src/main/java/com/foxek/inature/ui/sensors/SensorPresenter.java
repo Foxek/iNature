@@ -43,7 +43,8 @@ public class SensorPresenter extends BasePresenter<SensorMvpView,SensorMvpIntera
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(sensor ->
-                        getView().startMeasureActivity(sensor.uid,sensor.getName(),sensor.getIcon(),sensor.getAddress())
+                        getView().startMeasureActivity(sensor.uid,sensor.getName(),sensor.getIcon(),
+                                sensor.getAddress(),sensor.getType())
                         , throwable -> {}));
 
     }

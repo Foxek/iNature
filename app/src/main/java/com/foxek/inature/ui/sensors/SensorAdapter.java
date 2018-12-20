@@ -43,7 +43,7 @@ public class SensorAdapter extends RecyclerView.Adapter<SensorAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.sensorName.setText(mSensors.get(i).getName());
-        viewHolder.sensorType.setText(mSensors.get(i).getType());
+        viewHolder.sensorType.setText(mSensors.get(i).getDescription());
         viewHolder.sensorIcon.setImageResource(viewHolder.itemView.getResources()
                 .getIdentifier("com.foxek.inature:drawable/" + mSensors.get(i).getIcon(),null,null));
     }

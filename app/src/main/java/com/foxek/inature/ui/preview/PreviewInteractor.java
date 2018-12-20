@@ -13,7 +13,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Completable;
-import io.reactivex.Observable;
 import io.reactivex.Single;
 
 public class PreviewInteractor implements PreviewMvpInteractor {
@@ -34,17 +33,16 @@ public class PreviewInteractor implements PreviewMvpInteractor {
     @Override
     public Single<SensorResponse> getDefaultSensorInfo(String productId, String macAddress){
         mSensor.setAddress(macAddress);
+        mSensor.setType(productId);
         return mRemoteRepository.getSensorInfo(productId + ".json")
                 .map(sensorResponse -> {
                     mSensor.setIcon(sensorResponse.getIcon());
-                    mSensor.setType(sensorResponse.getType());
+                    mSensor.setDescription(sensorResponse.getDescription());
                     for (MeasureMeta metaInfo : sensorResponse.getMeasureMetaInfo()){
                         mMeasures.add(new Measure(metaInfo.getName(),metaInfo.getIcon()));
                     }
                     return sensorResponse;
                 });
-//                .onErrorResumeNext(throwable -> Single.error(new RuntimeException(" ")));
-//                .onErrorResumeNext(Single.error(new RuntimeException("NoSensor")));
     }
 
     @Override

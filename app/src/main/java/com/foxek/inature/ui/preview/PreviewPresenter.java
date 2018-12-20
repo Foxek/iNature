@@ -36,23 +36,20 @@ public class PreviewPresenter extends BasePresenter<PreviewMvpView,PreviewMvpInt
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(sensorResponse ->{
-                    getView().setSensorPreview(sensorResponse.getType(),sensorResponse.getDescription(),sensorResponse.getIcon());
+                    getView().setSensorPreview(sensorResponse.getDescription(),sensorResponse.getPreview(),sensorResponse.getIcon());
                     getView().hideProgressBackground();
                     }, throwable -> {
                     getView().startSensorActivity(Constants.ERROR);
-//                    getView().hideProgressBackground();
                 }));
     }
 
     @Override
     public void createNewSensor(String name){
-        //getView().showProgressBackground();
         getDisposable().add(getInteractor().createNewSensor(name)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> getView().startSensorActivity(Constants.SUCCESS), throwable -> {
                     getView().showErrorHint(R.string.preview_error_sensor_exist);
-                    //getView().hideProgressBackground();
                 }));
     }
 

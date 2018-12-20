@@ -6,7 +6,12 @@ import com.foxek.inature.R;
 
 import com.foxek.inature.ui.base.BasePresenter;
 
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MeasurePresenter extends BasePresenter<MeasureMvpView,MeasureMvpInteractor> implements MeasureMvpPresenter {
 
@@ -63,8 +68,19 @@ public class MeasurePresenter extends BasePresenter<MeasureMvpView,MeasureMvpInt
     @Override
     public void bluetoothEnabled(){
         getView().setSearchStatus(R.string.bluetooth_search,R.string.bluetooth_search_desc);
-        getInteractor().bluetoothStartScanning("Pixel");
-        getDisposable().add(getInteractor().onBluetoothDataChanged(args.getString("mac")));
+        getInteractor().bluetoothStartScanning(args.getString("type"),args.getString("mac"));
+        controlBluetoothConnection();
+    }
+
+    private void controlBluetoothConnection(){
+        getDisposable().add(getInteractor().onBluetoothDataChanged()
+                .timeout(15, TimeUnit.SECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnError(error -> getView().setSearchStatus(R.string.bluetooth_search,R.string.bluetooth_search_desc))
+                .retry()
+                .subscribe(result -> getView().setSearchStatus(R.string.bluetooth_available,R.string.bluetooth_available_desc)
+                        , throwable -> {}));
     }
 
     @Override

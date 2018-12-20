@@ -15,9 +15,9 @@ public class SensorResponse {
     @Expose
     private String icon;
 
-    @SerializedName("type")
+    @SerializedName("preview")
     @Expose
-    private String type;
+    private String preview;
 
     @Expose
     @SerializedName("Measure")
@@ -39,12 +39,12 @@ public class SensorResponse {
         this.icon = icon;
     }
 
-    public String getType() {
-        return type;
+    public String getPreview() {
+        return preview;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setPreview(String preview) {
+        this.preview = preview;
     }
 
     public List<MeasureMeta> getMeasureMetaInfo() {

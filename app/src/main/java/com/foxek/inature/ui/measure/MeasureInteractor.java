@@ -1,6 +1,6 @@
 package com.foxek.inature.ui.measure;
 
-import android.bluetooth.le.ScanResult;
+import android.net.wifi.ScanResult;
 import android.os.Handler;
 import android.os.ParcelUuid;
 
@@ -9,7 +9,6 @@ import com.foxek.inature.data.database.LocalRepository;
 import com.foxek.inature.data.database.model.Measure;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -22,19 +21,18 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.foxek.inature.common.Constants.SENSOR_DATA_UUID;
+
 public class MeasureInteractor implements MeasureMvpInteractor{
 
     private LocalRepository     mRepository;
     private MeasureAdapter      mMeasureAdapter;
     private BluetoothHelper     mBluetoothHelper;
-    private Handler             mAvailableHandler;
 
     @Inject
     MeasureInteractor(LocalRepository localRepository, BluetoothHelper bluetoothHelper){
         mRepository = localRepository;
         mBluetoothHelper = bluetoothHelper;
-
-        mAvailableHandler = new Handler();
     }
 
     @Override
@@ -68,8 +66,8 @@ public class MeasureInteractor implements MeasureMvpInteractor{
     }
 
     @Override
-    public void bluetoothStartScanning(String type) {
-        mBluetoothHelper.startScanning(type);
+    public void bluetoothStartScanning(String type, String mac) {
+        mBluetoothHelper.startScanning(type,mac);
     }
 
     @Override
@@ -77,32 +75,17 @@ public class MeasureInteractor implements MeasureMvpInteractor{
         mBluetoothHelper.stopScanning();
         mBluetoothHelper.close();
 
-        if (mAvailableHandler != null) {
-            mAvailableHandler.removeCallbacksAndMessages(null);
-            mAvailableHandler = null;
-        }
     }
 
     @Override
-    public Disposable onBluetoothDataChanged(String mac) {
+    public Observable<Boolean> onBluetoothDataChanged() {
         return mBluetoothHelper.getScanResult()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(result -> {
-                    if (result.getDevice().getAddress().equals("79:17:A6:C5:CD:49")) {
-                        mAvailableHandler.removeCallbacksAndMessages(null);
-                        Map<ParcelUuid, byte[]> map = result.getScanRecord().getServiceData();
-                        if (map != null) {
-                            Set<Map.Entry<ParcelUuid, byte[]>> set = map.entrySet();
-                            for (Map.Entry<ParcelUuid, byte[]> aSet : set)
-                                mMeasureAdapter.parseAdvertisingData(aSet.getValue());
-                        }
-                        mAvailableHandler.postDelayed(()->{
-//                            getView().setSearchStatus(R.string.bluetooth_search,R.string.bluetooth_search_desc);
-                            mAvailableHandler.removeCallbacksAndMessages(null);
-                        }, 10000);
-                    }
-                }, throwable -> {});
+                .map(result -> {
+                    byte[] serviceData =  result.getScanRecord().getServiceData(SENSOR_DATA_UUID);
+                    if (serviceData != null)
+                        mMeasureAdapter.parseAdvertisingData(serviceData);
+                    return true;
+                });
     }
 
 
