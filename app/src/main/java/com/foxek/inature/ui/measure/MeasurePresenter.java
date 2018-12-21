@@ -57,6 +57,7 @@ public class MeasurePresenter extends BasePresenter<MeasureMvpView,MeasureMvpInt
     @Override
     public void bluetoothNotEnabled(){
         getView().setSearchStatus(R.string.bluetooth_enabled,R.string.bluetooth_enabled_desc);
+        getInteractor().setDefaultMeasure();
         getView().showSnackBar(R.string.bluetooth_request);
     }
 
@@ -72,7 +73,10 @@ public class MeasurePresenter extends BasePresenter<MeasureMvpView,MeasureMvpInt
                 .timeout(15, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnError(error -> getView().setSearchStatus(R.string.bluetooth_search,R.string.bluetooth_search_desc))
+                .doOnError(error -> {
+                    getView().setSearchStatus(R.string.bluetooth_search,R.string.bluetooth_search_desc);
+                    getInteractor().setDefaultMeasure();
+                })
                 .retry()
                 .subscribe(result -> getView().setSearchStatus(R.string.bluetooth_available,R.string.bluetooth_available_desc)
                         , throwable -> {}));

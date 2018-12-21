@@ -2,8 +2,6 @@ package com.foxek.inature.common;
 
 import android.os.ParcelUuid;
 
-import java.util.UUID;
-
 public class Constants {
     public final static int REQUEST_CODE_ASK_PERMISSIONS = 123;
     public final static int MY_CAMERA_REQUEST_CODE = 100;

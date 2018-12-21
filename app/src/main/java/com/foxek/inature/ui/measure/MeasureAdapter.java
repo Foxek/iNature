@@ -41,6 +41,7 @@ public class MeasureAdapter extends RecyclerView.Adapter<MeasureAdapter.ViewHold
     public void addAllMeasures(List<Measure> measures){
         mMeasure.clear();
         mMeasure.addAll(measures);
+        setDefaultValue();
         notifyDataSetChanged();
     }
 
@@ -54,6 +55,12 @@ public class MeasureAdapter extends RecyclerView.Adapter<MeasureAdapter.ViewHold
         notifyDataSetChanged();
     }
 
+    public void setDefaultValue(){
+        for (int i = 0; i < mMeasure.size(); i++){
+            mMeasure.get(i).setValue("--");
+        }
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override

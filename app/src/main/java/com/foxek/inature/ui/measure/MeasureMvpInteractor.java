@@ -1,11 +1,7 @@
 package com.foxek.inature.ui.measure;
 
-
-import android.net.wifi.ScanResult;
-
 import com.foxek.inature.ui.base.MvpInteractor;
 
-import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 
@@ -24,6 +20,8 @@ public interface MeasureMvpInteractor extends MvpInteractor {
     void bluetoothStartScanning(String type, String mac);
 
     void bluetoothStopScanning();
+
+    void setDefaultMeasure();
 
     Observable<Boolean> onBluetoothDataChanged();
 }

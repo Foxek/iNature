@@ -21,6 +21,8 @@
     <string name="back_button">Назад</string>
     <string name="finish_button">Закончить</string>
 
+    <string name="default_measure_value">--</string>
+
     <string name="sensor_list_title">Список датчиков</string>
     <string name="add_new_sensor_title">Настройка датчика</string>
 

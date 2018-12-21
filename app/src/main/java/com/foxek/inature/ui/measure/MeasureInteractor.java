@@ -10,9 +10,6 @@ import com.foxek.inature.data.database.model.Measure;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -75,6 +72,11 @@ public class MeasureInteractor implements MeasureMvpInteractor{
         mBluetoothHelper.stopScanning();
         mBluetoothHelper.close();
 
+    }
+
+    @Override
+    public void setDefaultMeasure() {
+        mMeasureAdapter.setDefaultValue();
     }
 
     @Override
