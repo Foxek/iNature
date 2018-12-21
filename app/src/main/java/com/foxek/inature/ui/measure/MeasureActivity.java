@@ -1,10 +1,15 @@
 package com.foxek.inature.ui.measure;
 
+import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +20,7 @@ import android.widget.TextView;
 
 import com.foxek.inature.R;
 import com.foxek.inature.ui.base.BaseView;
+import com.foxek.inature.ui.sensors.SensorActivity;
 
 import javax.inject.Inject;
 
@@ -22,6 +28,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.foxek.inature.common.Constants.MY_CAMERA_REQUEST_CODE;
+import static com.foxek.inature.common.Constants.REQUEST_CODE_ASK_PERMISSIONS;
 import static com.foxek.inature.common.Constants.REQUEST_ENABLE_BT;
 
 public class MeasureActivity extends BaseView implements MeasureMvpView, View.OnClickListener{
@@ -111,6 +119,34 @@ public class MeasureActivity extends BaseView implements MeasureMvpView, View.On
             case R.id.app_bar_edit_button:
                 mPresenter.editButtonPressed();
                 break;
+        }
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        requestPermission();
+    }
+
+    private void requestPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+            ActivityCompat
+                    .requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_CODE_ASK_PERMISSIONS);
+        }else{
+            mPresenter.startBluetooth();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE_ASK_PERMISSIONS:
+                if (!(grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    finish();
+                }else
+                    mPresenter.startBluetooth();
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 

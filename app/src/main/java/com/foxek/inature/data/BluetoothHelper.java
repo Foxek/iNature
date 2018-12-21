@@ -96,4 +96,3 @@ public class BluetoothHelper {
         }
     };
 }
-//7b e8 01 01 ad cf

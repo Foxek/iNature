@@ -31,11 +31,6 @@ public class MeasurePresenter extends BasePresenter<MeasureMvpView,MeasureMvpInt
     public void viewIsReady() {
         createMeasureListAdapter();
         getView().showSensorPreview(args.getString("name"), args.getString("icon"));
-
-        if (getInteractor().prepareBluetooth())
-            bluetoothEnabled();
-        else
-            getView().bluetoothEnableRequest();
     }
 
     private void createMeasureListAdapter (){
@@ -86,5 +81,13 @@ public class MeasurePresenter extends BasePresenter<MeasureMvpView,MeasureMvpInt
     @Override
     public void finishBluetooth() {
         getInteractor().bluetoothStopScanning();
+    }
+
+    @Override
+    public void startBluetooth() {
+        if (getInteractor().prepareBluetooth())
+            bluetoothEnabled();
+        else
+            getView().bluetoothEnableRequest();
     }
 }

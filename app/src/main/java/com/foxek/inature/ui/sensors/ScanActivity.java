@@ -65,8 +65,10 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case MY_CAMERA_REQUEST_CODE:
-                if (!(grantResults[0] == PackageManager.PERMISSION_GRANTED))
+                if (!(grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    startActivity(new Intent(this, SensorActivity.class));
                     finish();
+                }
                 break;
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -81,11 +83,11 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         if (rawResult.toString().contains(DELIMITER)) {
             result = rawResult.toString().split(DELIMITER, 2);
 
-            intent.putExtra("sensor_name", result[0]);
-            intent.putExtra("sensor_mac", result[1]);
+            intent.putExtra("product_id", result[0]);
+            intent.putExtra("mac_address", result[1]);
         }else {
-            intent.putExtra("sensor_name", "null");
-            intent.putExtra("sensor_mac", "null");
+            intent.putExtra("product_id", "null");
+            intent.putExtra("mac_address", "null");
         }
         startActivity(intent);
         finish();

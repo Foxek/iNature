@@ -15,4 +15,6 @@ public interface MeasureMvpPresenter extends MvpPresenter<MeasureMvpView,Measure
     void bluetoothEnabled();
 
     void finishBluetooth();
+
+    void startBluetooth();
 }
