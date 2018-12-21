@@ -7,10 +7,10 @@ This repository contains a detailed simple android app for monitoring BLE smart 
 
 <p>
 <p align="center">
-  <img src="https://github.com/Foxek/WiseTimer-Simple-android-interval-timer/blob/master/images/4F9LJma1H8Q_framed.png" width="200">
-  <img src="https://github.com/Foxek/WiseTimer-Simple-android-interval-timer/blob/master/images/4F9gfma1H8Q_framed.png" width="200">
-  <img src="https://github.com/Foxek/WiseTimer-Simple-android-interval-timer/blob/master/images/1F9LJma1H8Q_framed.png" width="200">
-  <img src="https://github.com/Foxek/WiseTimer-Simple-android-interval-timer/blob/master/images/4F5LJma1H8Q_framed.png" width="200">
+  <img src="https://github.com/Foxek/iNature/blob/master/images/4F9LJma1H8Q_framed.png" width="200">
+  <img src="https://github.com/Foxek/iNature/blob/master/images/4F9gfma1H8Q_framed.png" width="200">
+  <img src="https://github.com/Foxek/iNature/blob/master/images/1F9LJma1H8Q_framed.png" width="200">
+  <img src="https://github.com/Foxek/iNature/blob/master/images/4F5LJma1H8Q_framed.png" width="200">
 </p>
 
 ### Library reference resources:
@@ -18,6 +18,8 @@ This repository contains a detailed simple android app for monitoring BLE smart 
 * Dagger2
 * Room
 * ButterKnife
+* Retrofit
+
 
 ### License
 License
