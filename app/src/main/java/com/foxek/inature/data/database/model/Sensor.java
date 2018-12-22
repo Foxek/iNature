@@ -2,6 +2,7 @@ package com.foxek.inature.data.database.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
@@ -34,6 +35,7 @@ public class Sensor {
         this.icon = icon;
     }
 
+    @Ignore
     public Sensor() {
 
     }
