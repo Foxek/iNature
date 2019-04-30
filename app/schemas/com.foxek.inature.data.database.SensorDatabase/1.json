@@ -1,0 +1,137 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "a6cb126464e7c7aeac59c2be3d203a68",
+    "entities": [
+      {
+        "tableName": "sensor",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER NOT NULL, `sensor_name` TEXT, `sensor_description` TEXT, `sensor_mac` TEXT, `sensor_icon` TEXT, `sensor_type` TEXT, PRIMARY KEY(`uid`))",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "sensor_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "sensor_description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "address",
+            "columnName": "sensor_mac",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "icon",
+            "columnName": "sensor_icon",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "sensor_type",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uid"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_sensor_sensor_name",
+            "unique": true,
+            "columnNames": [
+              "sensor_name"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_sensor_sensor_name` ON `${TABLE_NAME}` (`sensor_name`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Measure",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT, `value` TEXT, `icon` TEXT, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `sensorId` INTEGER NOT NULL, FOREIGN KEY(`sensorId`) REFERENCES `sensor`(`uid`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "value",
+            "columnName": "value",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "icon",
+            "columnName": "icon",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sensorId",
+            "columnName": "sensorId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_Measure_sensorId",
+            "unique": false,
+            "columnNames": [
+              "sensorId"
+            ],
+            "createSql": "CREATE  INDEX `index_Measure_sensorId` ON `${TABLE_NAME}` (`sensorId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "sensor",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "sensorId"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a6cb126464e7c7aeac59c2be3d203a68\")"
+    ]
+  }
+}

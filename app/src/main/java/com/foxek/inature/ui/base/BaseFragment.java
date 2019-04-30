@@ -1,7 +1,7 @@
 package com.foxek.inature.ui.base;
 
 import android.content.Context;
-import android.support.v4.app.DialogFragment;
+import androidx.core.app.DialogFragment;
 
 import com.foxek.inature.di.component.ActivityComponent;
 

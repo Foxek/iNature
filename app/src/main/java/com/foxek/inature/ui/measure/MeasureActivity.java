@@ -8,19 +8,17 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.NestedScrollView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.foxek.inature.R;
 import com.foxek.inature.ui.base.BaseView;
-import com.foxek.inature.ui.sensors.SensorActivity;
 
 import javax.inject.Inject;
 
@@ -28,7 +26,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.foxek.inature.common.Constants.MY_CAMERA_REQUEST_CODE;
 import static com.foxek.inature.common.Constants.REQUEST_CODE_ASK_PERMISSIONS;
 import static com.foxek.inature.common.Constants.REQUEST_ENABLE_BT;
 
